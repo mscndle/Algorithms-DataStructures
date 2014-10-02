@@ -1,4 +1,5 @@
 package com.mcondle.Graph;
 
-public class Node {
+
+public class Tests {
 }
