@@ -2,18 +2,14 @@ package com.mcondle.Graph;
 
 import java.util.*;
 
-public class BfsIterator implements Iterator<String> {
+public class BFSIterator implements Iterator<String> {
 
     private Set<String> visited;
     private Queue<String> queue;
     private Graph G;
 //    private List<String> bfsNodes;
 
-    public BfsIterator(Graph G, String origin) {
-        if (!G.isVertexInGraph(origin)) {
-            throw new IllegalArgumentException("Vertex not in graph");
-        }
-
+    public BFSIterator(Graph G, String origin) {
         this.G = G;
         this.visited = new HashSet<String>();
         this.queue = new LinkedList<String>();
@@ -52,13 +48,14 @@ public class BfsIterator implements Iterator<String> {
     @Override
     public String next() {
 
-        String next = this.queue.remove();
+        String next = this.queue.remove();  //removes first
         for (String neighbor : G.getNeighbors(next)) {
             if (!this.visited.contains(neighbor)) {
                 this.queue.add(neighbor);
                 this.visited.add(neighbor);
             }
         }
+        this.visited.add(next);
         return next;
 
     }
