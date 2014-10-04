@@ -10,6 +10,10 @@ public class RingBuffer<T> {
     private int numberOfElements;
 
     public RingBuffer(final int size) {
+        if (size <= 0) {
+            throw new IllegalArgumentException("Buffer capacity must be positive");
+        }
+
         this.buffer = newArray(size);
     }
 
